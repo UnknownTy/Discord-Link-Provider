@@ -4,9 +4,13 @@ from dotenv import load_dotenv
 load_dotenv() #Loads .env variables from the same directory
 import os
 from datetime import datetime
+from pytz import timezone
 
 #Private variables
 CLIENT_KEY = os.getenv("CLIENT_KEY")
+
+#Public variables
+timeZone = timezone("US/Pacific")
 
 class LinkInfo():
     """
@@ -77,8 +81,8 @@ def compare_time(comp_time, comp_day) -> bool:
     :return: [True if current time is in range, false otherwise]
     :rtype: [bool]
     """
-    day = datetime.now().strftime("%A") #Current Day
-    now = datetime.now()
+    day = datetime.now(tz=timeZone).strftime("%A") #Current Day
+    now = datetime.now(tz=timeZone)
     if comp_day == day: #First check if today matches the day to save computation time
         comp_time = list(map(int, comp_time))
         timeToCompB = now.replace(hour=(comp_time[0]-1), minute=comp_time[1], second=0, microsecond=0)
