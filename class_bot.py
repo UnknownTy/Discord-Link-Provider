@@ -105,9 +105,6 @@ async def link_provider(ctx, content):
     if "link pl".lower() in content:
         for set_ in classLinks:
             if ctx.channel.id == set_["set"]:
-                time = datetime.now().strftime("%H:%M:%S") #Current time
-                
-
                 if content == "link pleb": #An exception for those who are rude.
                     await ctx.channel.send("Dude. Rude.")
 
@@ -116,6 +113,7 @@ async def link_provider(ctx, content):
                     #For each link in the list check if in range of start time.
 
                     if compare_time(link.time.split(":"), link.day):
+                        time = datetime.now(tz=timeZone).strftime("%H:%M:%S") #Current time
                         #Respond with the link
                         await ctx.channel.send(
                             f"It's currently {time}. Time for {link.name}!\n"\
