@@ -5,12 +5,16 @@ load_dotenv() #Loads .env variables from the same directory
 import os
 from datetime import datetime
 from pytz import timezone
+import discordhealthcheck #To automate healtchecks
 
 #Private variables
 CLIENT_KEY = os.getenv("CLIENT_KEY")
 
 #Public variables
 timeZone = timezone("US/Pacific")
+#Start the Discord Client
+client = discord.Client()
+
 
 class LinkInfo():
     """
@@ -62,8 +66,7 @@ class LinkInfo():
 #Load the class information to memory
 classLinks = LinkInfo.read_from_json("./classes.json") 
 
-#Start the Discord Client
-client = discord.Client()
+
 
 #The emoji that the bot reacts to tyty messages with
 emoji = ":WaitWhat:754104719554772994" #Wait What
@@ -148,4 +151,5 @@ async def on_message(message):
     await link_provider(message, pure_content)
                     
 
+discordhealthcheck.start(client, 80)
 client.run(CLIENT_KEY)
