@@ -56,7 +56,7 @@ class LinkInfo():
         self.time = time_
 
 #Load the class information to memory
-classLinks = LinkInfo.read_from_json("classes.json") 
+classLinks = LinkInfo.read_from_json("./classes.json") 
 
 #Start the Discord Client
 client = discord.Client()
