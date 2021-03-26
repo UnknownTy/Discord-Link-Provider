@@ -5,7 +5,6 @@ load_dotenv() #Loads .env variables from the same directory
 import os
 from datetime import datetime
 from pytz import timezone
-import discordhealthcheck #To automate healtchecks
 
 #Private variables
 CLIENT_KEY = os.getenv("CLIENT_KEY")
@@ -38,13 +37,11 @@ class LinkInfo():
         Returns:
             dict: Dictionary of all sets' class information
         """
-        complete_list = []
+        complete_dict = {}
         with open(filepath) as json_file:
-            json_data = json.loads(json_file.read())
+            json_data = json.load(json_file)
         for set_ in json_data:
-            tmp_dict = {}
             tmp_list = []
-            tmp_dict["set"] = set_["set"]
             for class_ in set_["classes"]:
                 tmp_list.append(LinkInfo(
                     class_["name"],
@@ -52,10 +49,9 @@ class LinkInfo():
                     class_["day"],
                     class_["time"],
                 ))
-            tmp_dict["classes"] = tmp_list
-            complete_list.append(tmp_dict)
+            complete_dict[set_["set"]] = tmp_list
 
-        return complete_list
+        return complete_dict
 
     def __init__(self, name_, link_, day_, time_):
         self.name = name_
@@ -106,28 +102,28 @@ async def link_provider(ctx, content):
     :type content: [str]
     """
     if "link pl".lower() in content:
-        for set_ in classLinks:
-            if ctx.channel.id == set_["set"]:
-                if content == "link pleb": #An exception for those who are rude.
-                    await ctx.channel.send("Dude. Rude.")
+        classes = classLinks.get(ctx.channel.id, False)
+        if classes:
+            if content == "link pleb": #An exception for those who are rude.
+                await ctx.channel.send("Dude. Rude.")
 
-                none=True #By default assumes we find none
-                for link in set_["classes"]:
-                    #For each link in the list check if in range of start time.
+            none=True #By default assumes we find none
+            for class_ in classes:
+                #For each link in the list check if in range of start time.
 
-                    if compare_time(link.time.split(":"), link.day):
-                        time = datetime.now(tz=timeZone).strftime("%H:%M:%S") #Current time
-                        #Respond with the link
-                        await ctx.channel.send(
-                            f"It's currently {time}. Time for {link.name}!\n"\
-                            f"Class begins at {link.time}\n{link.url}")
+                if compare_time(class_.time.split(":"), class_.day):
+                    time = datetime.now(tz=timeZone).strftime("%H:%M:%S") #Current time
+                    #Respond with the link
+                    await ctx.channel.send(
+                        f"It's currently {time}. Time for {class_.name}!\n"\
+                        f"Class begins at {class_.time}\n{class_.url}")
 
-                        none = False
-                        break
+                    none = False
+                    break
 
-                if none:
-                    #If no classes are in range, let the requester know
-                    await ctx.channel.send("I don't believe there's any classes right now.")
+            if none:
+                #If no classes are in range, let the requester know
+                await ctx.channel.send("I don't believe there's any classes right now.")
 
 @client.event
 async def on_ready():
@@ -151,5 +147,4 @@ async def on_message(message):
     await link_provider(message, pure_content)
                     
 
-discordhealthcheck.start(client, 80)
 client.run(CLIENT_KEY)

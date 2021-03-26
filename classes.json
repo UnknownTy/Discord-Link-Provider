@@ -84,5 +84,15 @@
                 "time": "8:30"
             }
         ]
+    },
+    {
+        "set": 819704273528160277,
+        "classes": [{
+                "name": "TEST",
+                "link": "TESTLINK",
+                "day": "Friday",
+                "time": "14:30"
+            }
+        ]
     }
 ]
