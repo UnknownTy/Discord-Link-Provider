@@ -47,7 +47,7 @@ async def on_message(message):
     elif pure_content.startswith('!') and message.author.id == 190974605895270400: ####REMOVE THIS! CHECKS TO SEE IF AUTHOR IS UNKNOWN
         text = pure_content[1:].split(' ')
         command = text[0]
-        args = text[1:]
+        args = tuple(text[1:])
         if len(command) > 0:
             await cmd.exec(message, command, args)
 
