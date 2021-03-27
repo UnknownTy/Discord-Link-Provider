@@ -1,5 +1,5 @@
 /Virtual_env
 /.vscode
-/__pycache__
 /boot_bot.bat
 /.env
+*\__pycache__
