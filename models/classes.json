@@ -90,8 +90,8 @@
         "classes": [{
                 "name": "TEST",
                 "link": "TESTLINK",
-                "day": "Friday",
-                "time": "14:30"
+                "day": "Monday",
+                "time": "8:30"
             }
         ]
     }

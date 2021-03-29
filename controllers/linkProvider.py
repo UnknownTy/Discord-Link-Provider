@@ -54,7 +54,7 @@ class LinkController():
                 #For each link in the list check if in range of start time.
 
                 if self.compare_time(class_.time.split(":"), class_.day):
-                    time = datetime.now(tz=timeZone).strftime("%H:%M:%S") #Current time
+                    time = datetime.now(tz=self._timeZone).strftime("%H:%M:%S") #Current time
                     #Respond with the link
                     await ctx.channel.send(
                         f"It's currently {time}. Time for {class_.name}!\n"\
