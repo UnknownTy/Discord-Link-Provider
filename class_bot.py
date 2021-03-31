@@ -18,7 +18,7 @@ client = discord.Client()
 
 
 #Load the class information to memory
-link_controller = LinkController('models\classes.json', timeZone)
+link_controller = LinkController('models/classes.json', timeZone)
 cmd = CommandsController()
 
 
