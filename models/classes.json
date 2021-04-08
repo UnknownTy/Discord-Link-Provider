@@ -3,42 +3,49 @@
         "set" : 753046131054870549,
         "classes" : [
             {
+            "id" : 1,
             "name" : "Stats for IT", 
             "link" : "https://bcit.zoom.us/my/carlgladish?pwd=N0dVK2tDaDhHSUVBRDBOTjZUbFJ4QT09",
             "day"  : "Friday",
             "time" : "8:30"
         },
             {
+            "id" : 2,
             "name" : "Business System Analysis", 
             "link" : "https://bcit.zoom.us/j/83108097834?pwd=eTdQdVRZVUJTMWFQM3NGNW9DQkc5QT09",
             "day"  : "Friday",
             "time" : "13:30"
         },
             {
+            "id" : 3,
             "name" : "Business Comms 2",
             "link" : "https://bcit.zoom.us/j/61792244940?pwd=Y0NIR1RRUlVRN3ZXSVFFRm9jZUQ1QT09",
             "day" : "Thursday",
             "time" : "13:30"
         },
             {
+            "id" : 4,
             "name" : "Object Oriented Programming",
             "link" : "https://bcit.zoom.us/j/86858851746?pwd=c2xndU9kdzd6ekNyU1JaNDBYMDZjQT09",
             "day" : "Thursday",
             "time" : "8:30"
         },
             {
+            "id" : 5,
             "name" : "Linux System Administration",
             "link" : "https://bcit.zoom.us/j/85364217514?pwd=dFZ0WjlTb1R3QVhuOVdiOFVvSDd6dz09",
             "day" : "Wednesday",
             "time" : "11:30"
         },
             {
+            "id" : 6,
             "name" : "Developing Web Applications",
             "link" : "https://bcit.zoom.us/j/87967785770?pwd=eElZUUwzRTRvRU9zZkNJYndGcC8vdz09",
             "day" : "Tuesday",
             "time" : "13:30"
         },
             {
+            "id" : 7,
             "name" : "Principles of Ent Networking",
             "link" : "https://bcit.zoom.us/j/89682583099?pwd=ck5NN1RjTGx6Y0pUdkVTclJUZGhNZz09",
             "day" : "Monday",
@@ -48,36 +55,42 @@
     {
         "set": 753046104681086996,
         "classes": [{
+            "id" : 1,
                 "name": "Stats for IT",
                 "link": "https://bcit.zoom.us/j/4500848395?pwd=N0dVK2tDaDhHSUVBRDBOTjZUbFJ4QT09",
                 "day": "Monday",
                 "time": "8:30"
             },
             {
+                "id" : 2,
                 "name": "Linux System administration",
                 "link": "https://bcit.zoom.us/j/87881555105?pwd=czY4ZmFvQ1hMWVVaWmhNMFlLamdsUT09",
                 "day": "Tuesday",
                 "time": "8:30"
             },
             {
+                "id" : 3,
                 "name": "Developing Web Applications",
                 "link": "https://bcit.zoom.us/j/87221410105?pwd=cDlHYVYvVXJMcmZ3OHlSUzZMRUtTdz09",
                 "day": "Wednesday",
                 "time": "11:30"
             },
             {
+                "id" : 4,
                 "name": "Advanced Python Programming",
                 "link": "https://bcit.zoom.us/j/89561023506?pwd=dk5NV3NFOUJNY1dzNkl2bHpUT1pwdz09",
                 "day": "Thursday",
                 "time": "8:30"
             },
             {
+                "id" : 5,
                 "name": "Business Systems Analysis",
                 "link": "https://bcit.zoom.us/j/83389401573?pwd=c3pCbFQ0eVFaM1ROUUZtMXA1a3hqdz09",
                 "day": "Thursday",
                 "time": "13:30"
             },
             {
+                "id" : 6,
                 "name": "Principles of Enterprise Networking",
                 "link": "https://bcit.zoom.us/j/89682583099?pwd=ck5NN1RjTGx6Y0pUdkVTclJUZGhNZz09",
                 "day": "Friday",
@@ -88,6 +101,7 @@
     {
         "set": 819704273528160277,
         "classes": [{
+                "id" : 1,
                 "name": "TEST",
                 "link": "TESTLINK",
                 "day": "Monday",
