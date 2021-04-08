@@ -4,9 +4,13 @@ from datetime import datetime
 from models.linkInfo import LinkInfo
 class LinkController():
     def __init__(self, links_path, tz_):
+        self._links_path = links_path
         self._links = LinkInfo.read_from_json(links_path)
         self._timeZone = timezone(tz_)
     
+
+    async def get_classes(self, id):
+        return self._links.get(id, False)
 
     def compare_time(self, comp_time, comp_day) -> bool:
         """
@@ -32,6 +36,24 @@ class LinkController():
         
         return False #False otherwise
 
+    async def link_updater(self, ctx, args):
+        if len(args) < 2 or len(args) > 3:
+            return False, None, None
+        id = int(args[0])
+        link = args[1]
+        if len(args) == 2:
+            set = ctx.channel.id
+        elif len(args) == 3:
+            set = int(args[2])
+        try:
+            for class_ in self._links[set]:
+                if class_.id == id:
+                    class_.url = link
+                    LinkInfo.save_to_json(self._links_path, self._links)
+                    return True, class_.id, class_.name
+        except KeyError:
+            return False, None, None
+
 
     async def link_provider(self, ctx, content):
         """
@@ -44,7 +66,7 @@ class LinkController():
         :type content: [str]
         """
 
-        classes = self._links.get(ctx.channel.id, False)
+        classes = await self.get_classes(ctx.channel.id)
         if classes:
             if content == "link pleb": #An exception for those who are rude.
                 await ctx.channel.send("Dude. Rude.")

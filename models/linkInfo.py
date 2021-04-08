@@ -33,13 +33,40 @@ class LinkInfo():
                     class_["link"],
                     class_["day"],
                     class_["time"],
+                    class_["id"]
                 ))
             complete_dict[set_["set"]] = tmp_list
 
         return complete_dict
 
-    def __init__(self, name_, link_, day_, time_):
+    @staticmethod
+    def save_to_json(filepath, list_links) -> None:
+        complete_list = []
+        for set_ in list_links:
+            tmp_classes = []
+            tmp_data = {}
+            for class_ in list_links[set_]:
+                tmp_classes.append(class_.to_dict())
+            tmp_data["set"] = set_
+            tmp_data["classes"] = tmp_classes
+            complete_list.append(tmp_data)
+
+        with open(filepath, 'w') as json_file:
+            json.dump(complete_list, json_file, indent=4)
+
+    def __init__(self, name_, link_, day_, time_, id_):
+        self.id = id_
         self.name = name_
         self.url = link_
         self.day = day_
         self.time = time_
+
+    def to_dict(self):
+        class_dict = {
+            "id": self.id,
+            "name": self.name,
+            "link": self.url,
+            "day": self.day,
+            "time": self.time
+        }
+        return class_dict

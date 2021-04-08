@@ -49,7 +49,7 @@ async def on_message(message):
         command = text[0]
         args = tuple(text[1:])
         if len(command) > 0:
-            await cmd.exec(message, command, args)
+            await cmd.exec(message, command, args, controller=link_controller)
 
 
 
