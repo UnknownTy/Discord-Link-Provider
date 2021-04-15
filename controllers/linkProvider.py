@@ -36,6 +36,26 @@ class LinkController():
         
         return False #False otherwise
 
+    async def list_links(self, ctx, args):
+        if len(args) > 0:
+            set_ = int(args[0])
+        else:
+            set_ = ctx.channel.id
+        if not set_:
+            raise ValueError("No set by that ID")
+        embed = discord.Embed(
+            title= f"{set_} class list",
+            description="A list of currently available classes, and their IDs",
+            color = 16316171
+            )
+        for class_ in self._links[set_]:
+            embed.add_field(
+                name= class_.name,
+                value= class_.id,
+                inline= True
+            )
+        return embed
+
     async def link_updater(self, ctx, args):
         if len(args) < 2 or len(args) > 3:
             return False, None, None

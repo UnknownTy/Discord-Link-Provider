@@ -35,8 +35,9 @@ class CommandsController():
         if result: #Check if true
             await ctx.channel.send(f"Updated the link for {cName} ({cId})")
 
-    async def listFunc(self, ctx, args):
-        pass
+    async def listFunc(self, ctx, args, controller):
+        msg = await controller.list_links(ctx, args)
+        await ctx.channel.send(embed=msg)
 
     async def invalidCommand(self, ctx, args, c):
         msg = f"Invalid command. Valid commands are:\n"
