@@ -45,8 +45,8 @@ async def on_message(message):
         await link_controller.link_provider(message, pure_content)
     
     elif pure_content.startswith('!') and message.author.id == 190974605895270400: ####REMOVE THIS! CHECKS TO SEE IF AUTHOR IS UNKNOWN
-        text = pure_content[1:].split(' ')
-        command = text[0]
+        text = message.content.strip()[1:].split(' ')
+        command = text[0].lower()
         args = tuple(text[1:])
         if len(command) > 0:
             await cmd.exec(message, command, args, controller=link_controller)
