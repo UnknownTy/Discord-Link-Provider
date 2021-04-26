@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv() #Loads .env variables from the same directory
 from controllers.commands import CommandsController
-from controllers.linkProvider import LinkController
+from controllers.linkController import LinkController
 from models.linkInfo import LinkInfo
 
 #Private variables
@@ -43,13 +43,14 @@ async def on_message(message):
     
     if "link pl" in pure_content:
         await link_controller.link_provider(message, pure_content)
-    
-    elif pure_content.startswith('!') and message.author.id == 190974605895270400: ####REMOVE THIS! CHECKS TO SEE IF AUTHOR IS UNKNOWN
+
+        #Check the author is an Admin.
+    elif pure_content.startswith('!') and (753079844400791553 in [y.id for y in message.author.roles]):
         text = message.content.strip()[1:].split(' ')
         command = text[0].lower()
-        args = tuple(text[1:])
+        args = list(text[1:])
         if len(command) > 0:
-            await cmd.exec(message, command, args, controller=link_controller)
+            await cmd.exec(message, command, args, controller=link_controller, client=client)
 
 
 
