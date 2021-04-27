@@ -345,8 +345,8 @@ class LinkController():
                             if len(self._links[set_]) == 0:
                                 del self._links[set_]
                             else:
-                                for count, class_ in enumerate(self._links[set_]):
-                                    class_.id = count + 1
+                                for count, _class in enumerate(self._links[set_]):
+                                    _class.id = count + 1
                             LinkInfo.save_to_json(self._links_path, self._links)
 
                             #Sucessfully deleted items, so send back success
