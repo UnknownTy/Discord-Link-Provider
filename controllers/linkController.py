@@ -28,7 +28,7 @@ class LinkController():
         """
         day = datetime.now(tz=self._timeZone).strftime("%A") #Current Day
         now = datetime.now(tz=self._timeZone)
-        if comp_day == day: #First check if today matches the day to save computation time
+        if day in comp_day: #First check if today matches the day to save computation time
             comp_time = list(map(int, comp_time))
             timeToCompB = now.replace(hour=(comp_time[0]-1), minute=comp_time[1], second=0, microsecond=0)
             timeToCompA = now.replace(hour=(comp_time[0]+2), minute=comp_time[1], second=0, microsecond=0)
@@ -122,7 +122,7 @@ class LinkController():
             for class_ in classes:
                 #For each link in the list check if in range of start time.
 
-                if self.compare_time(class_.time.split(":"), class_.day):
+                if self.compare_time(class_.time.split(":"), class_.day.split(",")):
                     time = datetime.now(tz=self._timeZone).strftime("%H:%M:%S") #Current time
                     embed = discord.Embed(
                         title= f"Time for {class_.name}",
@@ -246,21 +246,23 @@ class LinkController():
             )
 
         ##Day checker
-        day = args[3].capitalize()
-        if day not in valid_days:
-            complete = False
-            embed.add_field(
-                name= "Day",
-                value= f"Invalid day: {day}",
-                inline= False
-            )
-        else:
+        days = args[3].split(",")
+        days = [x.capitalize() for x in days]
+        for day in days:
+            if day not in valid_days:
+                complete = False
+                embed.add_field(
+                    name= "Day",
+                    value= f"Invalid day: {day}",
+                    inline= False
+                )
+        if complete:
+            day = ",".join(days)
             embed.add_field(
                 name= "Day",
                 value= day,
                 inline= True
             )
-        if complete:
             embed.set_footer(text="Success")
             embed.color = 0x00ff2f
             try:

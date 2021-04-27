@@ -1,5 +1,6 @@
 import discord
 from controllers import linkController
+from os import path
 class CommandsController():
     def __init__(self):
         self._cmdList = {
@@ -50,7 +51,7 @@ class CommandsController():
         await ctx.channel.send(embed=msg)
     
     async def saveFunc(self, ctx, args, kwargs):
-        fileName = discord.File("models\classes.json", filename="classes.json")
+        fileName = discord.File(path.join("models", "classes.json"), filename="classes.json")
         dTime = 25 #Time until message is deleted in seconds
         
         msg = "I currently have the following classes in memory.\n"\
