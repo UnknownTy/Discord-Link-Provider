@@ -3,4 +3,3 @@
 /boot_bot.bat
 /.env
 *\__pycache__
-/models/classes.json
